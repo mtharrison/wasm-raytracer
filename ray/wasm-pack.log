@@ -143,3 +143,2002 @@ error: Could not compile `ray`.
 
 To learn more, run the command again with --verbose.
 
+Jul 24 12:19:14.430 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error: incorrect close delimiter: `}`
+  --> src/lib.rs:79:1
+   |
+79 | }
+   | ^
+   |
+note: unclosed delimiter
+  --> src/lib.rs:77:8
+   |
+77 |     log(format!("{:#?}", s);
+   |        ^
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> src/lib.rs:77:28
+   |
+77 |     log(format!("{:#?}", s);
+   |                            ^ expected one of `)`, `,`, `.`, `?`, or an operator here
+
+error: expected expression, found `)`
+  --> src/lib.rs:79:1
+   |
+79 | }
+   | ^ expected expression
+
+error[E0277]: `Scene` doesn't implement `std::fmt::Debug`
+  |
+  = help: the trait `std::fmt::Debug` is not implemented for `Scene`
+  = note: add `#[derive(Debug)]` or manually implement `std::fmt::Debug`
+  = note: required by `std::fmt::Debug::fmt`
+
+error[E0308]: mismatched types
+ --> <format macros>:2:1
+  |
+2 | $ crate :: fmt :: format ( format_args ! ( $ ( $ arg ) * ) ) )
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected &str, found struct `std::string::String`
+  |
+  = note: expected type `&str`
+             found type `std::string::String`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:165:44
+    |
+165 |         let distance = sphere_intersection(object, ray);
+    |                                            ^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `&Sphere`
+               found type `&Object`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:171:5
+    |
+171 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error: aborting due to 7 previous errors
+
+Some errors occurred: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:19:29.375 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0277]: `Scene` doesn't implement `std::fmt::Debug`
+  --> src/lib.rs:77:26
+   |
+77 |     log(format!("{:#?}", s));
+   |                          ^ `Scene` cannot be formatted using `{:?}`
+   |
+   = help: the trait `std::fmt::Debug` is not implemented for `Scene`
+   = note: add `#[derive(Debug)]` or manually implement `std::fmt::Debug`
+   = note: required by `std::fmt::Debug::fmt`
+
+error[E0308]: mismatched types
+  --> src/lib.rs:77:9
+   |
+77 |     log(format!("{:#?}", s));
+   |         ^^^^^^^^^^^^^^^^^^^
+   |         |
+   |         expected &str, found struct `std::string::String`
+   |         help: consider borrowing here: `&format!("{:#?}", s)`
+   |
+   = note: expected type `&str`
+              found type `std::string::String`
+   = note: this error originates in a macro outside of the current crate (in Nightly builds, run with -Z external-macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> src/lib.rs:165:44
+    |
+165 |         let distance = sphere_intersection(object, ray);
+    |                                            ^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `&Sphere`
+               found type `&Object`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:171:5
+    |
+171 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error: aborting due to 4 previous errors
+
+Some errors occurred: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:19:42.924 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0277]: `Camera` doesn't implement `std::fmt::Debug`
+  --> src/lib.rs:63:5
+   |
+63 |     pub camera: Camera,
+   |     ^^^^^^^^^^^^^^^^^^ `Camera` cannot be formatted using `{:?}`
+   |
+   = help: the trait `std::fmt::Debug` is not implemented for `Camera`
+   = note: add `#[derive(Debug)]` or manually implement `std::fmt::Debug`
+   = note: required because of the requirements on the impl of `std::fmt::Debug` for `&Camera`
+   = note: required for the cast to the object type `dyn std::fmt::Debug`
+
+error[E0277]: `Object` doesn't implement `std::fmt::Debug`
+  --> src/lib.rs:64:5
+   |
+64 |     pub objects: Vec<Object>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ `Object` cannot be formatted using `{:?}`
+   |
+   = help: the trait `std::fmt::Debug` is not implemented for `Object`
+   = note: add `#[derive(Debug)]` or manually implement `std::fmt::Debug`
+   = note: required because of the requirements on the impl of `std::fmt::Debug` for `std::vec::Vec<Object>`
+   = note: required because of the requirements on the impl of `std::fmt::Debug` for `&std::vec::Vec<Object>`
+   = note: required for the cast to the object type `dyn std::fmt::Debug`
+
+error[E0308]: mismatched types
+  --> src/lib.rs:77:9
+   |
+77 |     log(format!("{:#?}", s));
+   |         ^^^^^^^^^^^^^^^^^^^
+   |         |
+   |         expected &str, found struct `std::string::String`
+   |         help: consider borrowing here: `&format!("{:#?}", s)`
+   |
+   = note: expected type `&str`
+              found type `std::string::String`
+   = note: this error originates in a macro outside of the current crate (in Nightly builds, run with -Z external-macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> src/lib.rs:165:44
+    |
+165 |         let distance = sphere_intersection(object, ray);
+    |                                            ^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `&Sphere`
+               found type `&Object`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:171:5
+    |
+171 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error: aborting due to 5 previous errors
+
+Some errors occurred: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:20:45.286 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+  --> src/lib.rs:77:9
+   |
+77 |     log(format!("{:#?}", s));
+   |         ^^^^^^^^^^^^^^^^^^^
+   |         |
+   |         expected &str, found struct `std::string::String`
+   |         help: consider borrowing here: `&format!("{:#?}", s)`
+   |
+   = note: expected type `&str`
+              found type `std::string::String`
+   = note: this error originates in a macro outside of the current crate (in Nightly builds, run with -Z external-macro-backtrace for more info)
+
+error[E0308]: mismatched types
+   --> src/lib.rs:165:44
+    |
+165 |         let distance = sphere_intersection(object, ray);
+    |                                            ^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `&Sphere`
+               found type `&Object`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:171:5
+    |
+171 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:21:00.136 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:165:44
+    |
+165 |         let distance = sphere_intersection(object, ray);
+    |                                            ^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `&Sphere`
+               found type `&Object`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:171:5
+    |
+171 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:21:53.662 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0446]: private type `Object` in public interface
+  --> src/lib.rs:64:5
+   |
+36 | enum Object {
+   | - `Object` declared as private
+...
+64 |     pub objects: Vec<Object>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^ can't leak private type
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0446`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:28:49.103 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error: expected `:`, found `=`
+   --> src/lib.rs:188:28
+    |
+188 |             const neg_norm = plane.normal.negate();
+    |                            ^ expected `:`
+
+error[E0532]: expected tuple struct/variant, found struct `Sphere`
+   --> src/lib.rs:175:9
+    |
+175 |         Sphere(sphere) => {
+    |         ^^^^^^ did you mean `Sphere { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Sphere;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Plane`
+   --> src/lib.rs:187:9
+    |
+187 |         Plane(plane) => {
+    |         ^^^^^ did you mean `Plane { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Plane;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Sphere`
+   --> src/lib.rs:204:9
+    |
+204 |         Sphere(sphere) => {
+    |         ^^^^^^ did you mean `Sphere { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Sphere;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Plane`
+   --> src/lib.rs:207:9
+    |
+207 |         Plane(plane) => plane.normal
+    |         ^^^^^ did you mean `Plane { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Plane;
+    |
+
+error[E0308]: mismatched types
+   --> src/lib.rs:139:25
+    |
+139 |                         &object,
+    |                         ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:141:33
+    |
+141 |                         &normal(&object, &point_in_time),
+    |                                 ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:170:5
+    |
+170 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:219:21
+    |
+219 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:223:15
+    |
+223 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:237:15
+    |
+237 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:245:47
+    |
+245 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:254:42
+    |
+254 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:255:25
+    |
+255 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 14 previous errors
+
+Some errors occurred: E0308, E0532, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:29:02.004 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error: expected `:`, found `=`
+   --> src/lib.rs:188:28
+    |
+188 |             const neg_norm = plane.normal.negate();
+    |                            ^ expected `:`
+
+error[E0532]: expected tuple struct/variant, found struct `Sphere`
+   --> src/lib.rs:175:9
+    |
+175 |         Sphere(sphere) => {
+    |         ^^^^^^ did you mean `Sphere { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Sphere;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Plane`
+   --> src/lib.rs:187:9
+    |
+187 |         Plane(plane) => {
+    |         ^^^^^ did you mean `Plane { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Plane;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Sphere`
+   --> src/lib.rs:204:9
+    |
+204 |         Sphere(sphere) => {
+    |         ^^^^^^ did you mean `Sphere { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Sphere;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Plane`
+   --> src/lib.rs:207:9
+    |
+207 |         Plane(plane) => plane.normal
+    |         ^^^^^ did you mean `Plane { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Plane;
+    |
+
+error[E0308]: mismatched types
+   --> src/lib.rs:139:25
+    |
+139 |                         &object,
+    |                         ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:141:33
+    |
+141 |                         &normal(&object, &point_in_time),
+    |                                 ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:170:5
+    |
+170 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:219:21
+    |
+219 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:223:15
+    |
+223 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:237:15
+    |
+237 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:245:47
+    |
+245 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:254:42
+    |
+254 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:255:25
+    |
+255 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 14 previous errors
+
+Some errors occurred: E0308, E0532, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:29:29.853 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0532]: expected tuple struct/variant, found struct `Sphere`
+   --> src/lib.rs:175:9
+    |
+175 |         Sphere(sphere) => {
+    |         ^^^^^^ did you mean `Sphere { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Sphere;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Plane`
+   --> src/lib.rs:187:9
+    |
+187 |         Plane(plane) => {
+    |         ^^^^^ did you mean `Plane { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Plane;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Sphere`
+   --> src/lib.rs:203:9
+    |
+203 |         Sphere(sphere) => pos.subtract(&sphere.point).unit(),
+    |         ^^^^^^ did you mean `Sphere { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Sphere;
+    |
+
+error[E0532]: expected tuple struct/variant, found struct `Plane`
+   --> src/lib.rs:204:9
+    |
+204 |         Plane(plane) => plane.normal,
+    |         ^^^^^ did you mean `Plane { /* fields */ }`?
+help: possible better candidate is found in another module, you can import it into scope
+    |
+19  | use Object::Plane;
+    |
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:191:16
+    |
+191 |             if (denom <= 0) {
+    |                ^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+error[E0308]: mismatched types
+   --> src/lib.rs:139:25
+    |
+139 |                         &object,
+    |                         ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:141:33
+    |
+141 |                         &normal(&object, &point_in_time),
+    |                                 ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:170:5
+    |
+170 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 13 previous errors
+
+Some errors occurred: E0308, E0532, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:30:07.373 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:191:16
+    |
+191 |             if (denom <= 0) {
+    |                ^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+error[E0308]: mismatched types
+   --> src/lib.rs:139:25
+    |
+139 |                         &object,
+    |                         ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:141:33
+    |
+141 |                         &normal(&object, &point_in_time),
+    |                                 ^^^^^^^ expected enum `Object`, found &Sphere
+    |
+    = note: expected type `&Object`
+               found type `&&Sphere`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:170:5
+    |
+170 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found enum `Object`
+    |
+    = note: expected type `(std::option::Option<f32>, std::option::Option<&'a Sphere>)`
+               found type `(std::option::Option<f32>, std::option::Option<&Object>)`
+
+error[E0599]: no method named `negate` found for type `vector::Vector` in the current scope
+   --> src/lib.rs:188:41
+    |
+188 |             let neg_norm = plane.normal.negate();
+    |                                         ^^^^^^
+    | 
+   ::: src/vector.rs:2:1
+    |
+2   | pub struct Vector {
+    | ----------------- method `negate` not found for this
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 10 previous errors
+
+Some errors occurred: E0308, E0599, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:30:43.264 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0599]: no method named `negate` found for type `vector::Vector` in the current scope
+   --> src/lib.rs:188:41
+    |
+188 |             let neg_norm = plane.normal.negate();
+    |                                         ^^^^^^
+    | 
+   ::: src/vector.rs:2:1
+    |
+2   | pub struct Vector {
+    | ----------------- method `negate` not found for this
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors occurred: E0599, E0609.
+For more information about an error, try `rustc --explain E0599`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:31:12.627 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0061]: this function takes 1 parameter but 0 parameters were supplied
+   --> src/lib.rs:188:41
+    |
+188 |             let neg_norm = plane.normal.negate();
+    |                                         ^^^^^^ expected 1 parameter
+    | 
+   ::: src/vector.rs:85:5
+    |
+85  |     pub fn negate(&self, v: &Vector) -> Vector {
+    |     ------------------------------------------ defined here
+
+error[E0308]: mismatched types
+   --> src/lib.rs:189:46
+    |
+189 |             let denom = neg_norm.dot_product(ray.vector);
+    |                                              ^^^^^^^^^^
+    |                                              |
+    |                                              expected reference, found struct `vector::Vector`
+    |                                              help: consider borrowing here: `&ray.vector`
+    |
+    = note: expected type `&vector::Vector`
+               found type `vector::Vector`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:191:25
+    |
+191 |             if denom <= 0 {
+    |                         ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:196:32
+    |
+196 |             interm.dot_product(neg_norm) / denom
+    |                                ^^^^^^^^
+    |                                |
+    |                                expected reference, found struct `vector::Vector`
+    |                                help: consider borrowing here: `&neg_norm`
+    |
+    = note: expected type `&vector::Vector`
+               found type `vector::Vector`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:196:13
+    |
+173 | fn object_intersection(object: &Object, ray: &Ray) -> Option<f32> {
+    |                                                       ----------- expected `std::option::Option<f32>` because of return type
+...
+196 |             interm.dot_product(neg_norm) / denom
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found f32
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `f32`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 11 previous errors
+
+Some errors occurred: E0061, E0308, E0609.
+For more information about an error, try `rustc --explain E0061`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:31:20.630 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:189:46
+    |
+189 |             let denom = neg_norm.dot_product(ray.vector);
+    |                                              ^^^^^^^^^^
+    |                                              |
+    |                                              expected reference, found struct `vector::Vector`
+    |                                              help: consider borrowing here: `&ray.vector`
+    |
+    = note: expected type `&vector::Vector`
+               found type `vector::Vector`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:191:25
+    |
+191 |             if denom <= 0 {
+    |                         ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:196:32
+    |
+196 |             interm.dot_product(neg_norm) / denom
+    |                                ^^^^^^^^
+    |                                |
+    |                                expected reference, found struct `vector::Vector`
+    |                                help: consider borrowing here: `&neg_norm`
+    |
+    = note: expected type `&vector::Vector`
+               found type `vector::Vector`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:196:13
+    |
+173 | fn object_intersection(object: &Object, ray: &Ray) -> Option<f32> {
+    |                                                       ----------- expected `std::option::Option<f32>` because of return type
+...
+196 |             interm.dot_product(neg_norm) / denom
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found f32
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `f32`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 10 previous errors
+
+Some errors occurred: E0308, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:31:32.608 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:191:25
+    |
+191 |             if denom <= 0 {
+    |                         ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:196:32
+    |
+196 |             interm.dot_product(neg_norm) / denom
+    |                                ^^^^^^^^
+    |                                |
+    |                                expected reference, found struct `vector::Vector`
+    |                                help: consider borrowing here: `&neg_norm`
+    |
+    = note: expected type `&vector::Vector`
+               found type `vector::Vector`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:196:13
+    |
+173 | fn object_intersection(object: &Object, ray: &Ray) -> Option<f32> {
+    |                                                       ----------- expected `std::option::Option<f32>` because of return type
+...
+196 |             interm.dot_product(neg_norm) / denom
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found f32
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `f32`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 9 previous errors
+
+Some errors occurred: E0308, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:31:52.250 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:196:13
+    |
+173 | fn object_intersection(object: &Object, ray: &Ray) -> Option<f32> {
+    |                                                       ----------- expected `std::option::Option<f32>` because of return type
+...
+196 |             interm.dot_product(&neg_norm) / denom
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `std::option::Option`, found f32
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `f32`
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 7 previous errors
+
+Some errors occurred: E0308, E0609.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:32:12.653 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:216:21
+    |
+216 |     let b = &object.color;
+    |                     ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:220:15
+    |
+220 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:234:15
+    |
+234 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:242:47
+    |
+242 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:251:42
+    |
+251 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:252:25
+    |
+252 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0609`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:33:09.892 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0532]: expected unit struct/variant or constant, found tuple variant `Object::Plane`
+   --> src/lib.rs:217:9
+    |
+217 |         Object::Plane => &object.color,
+    |         ^^^^^^^^^^^^^ not a unit struct/variant or constant
+
+error[E0599]: no variant named `Aphere` found for type `Object` in the current scope
+   --> src/lib.rs:218:9
+    |
+36  | pub enum Object {
+    | --------------- variant `Aphere` not found here
+...
+218 |         Object::Aphere => &object.color,
+    |         ^^^^^^^^^^^^^^ variant not found in `Object`
+    |
+    = note: did you mean `Object::Sphere`?
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:217:34
+    |
+217 |         Object::Plane => &object.color,
+    |                                  ^^^^^
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:218:35
+    |
+218 |         Object::Aphere => &object.color,
+    |                                   ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:223:15
+    |
+223 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:237:15
+    |
+237 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:245:47
+    |
+245 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:254:42
+    |
+254 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:255:25
+    |
+255 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 9 previous errors
+
+Some errors occurred: E0532, E0599, E0609.
+For more information about an error, try `rustc --explain E0532`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:33:12.583 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0532]: expected unit struct/variant or constant, found tuple variant `Object::Plane`
+   --> src/lib.rs:217:9
+    |
+217 |         Object::Plane => &object.color,
+    |         ^^^^^^^^^^^^^ not a unit struct/variant or constant
+
+error[E0532]: expected unit struct/variant or constant, found tuple variant `Object::Sphere`
+   --> src/lib.rs:218:9
+    |
+218 |         Object::Sphere => &object.color,
+    |         ^^^^^^^^^^^^^^ not a unit struct/variant or constant
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:217:34
+    |
+217 |         Object::Plane => &object.color,
+    |                                  ^^^^^
+
+error[E0609]: no field `color` on type `&Object`
+   --> src/lib.rs:218:35
+    |
+218 |         Object::Sphere => &object.color,
+    |                                   ^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:223:15
+    |
+223 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:237:15
+    |
+237 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:245:47
+    |
+245 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:254:42
+    |
+254 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:255:25
+    |
+255 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 9 previous errors
+
+Some errors occurred: E0532, E0609.
+For more information about an error, try `rustc --explain E0532`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:33:29.329 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:223:15
+    |
+223 |     if object.lambert > 0.0 {
+    |               ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:237:15
+    |
+237 |     if object.specular > 0.0 {
+    |               ^^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:245:47
+    |
+245 |                 c = c.add(&color.scale(object.specular));
+    |                                               ^^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:254:42
+    |
+254 |         &b.scale(lambert_amount * object.lambert),
+    |                                          ^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:255:25
+    |
+255 |         &b.scale(object.ambient),
+    |                         ^^^^^^^
+
+error: aborting due to 5 previous errors
+
+For more information about this error, try `rustc --explain E0609`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:35:10.777 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:217:51
+    |
+217 |         Object::Plane(obj) => (&obj.color, object.lambert, object.specular, object.ambient),
+    |                                                   ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:217:67
+    |
+217 |         Object::Plane(obj) => (&obj.color, object.lambert, object.specular, object.ambient),
+    |                                                                   ^^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:217:84
+    |
+217 |         Object::Plane(obj) => (&obj.color, object.lambert, object.specular, object.ambient),
+    |                                                                                    ^^^^^^^
+
+error[E0609]: no field `lambert` on type `&Object`
+   --> src/lib.rs:218:52
+    |
+218 |         Object::Sphere(obj) => (&obj.color, object.lambert, object.specular, object.ambient),
+    |                                                    ^^^^^^^
+
+error[E0609]: no field `specular` on type `&Object`
+   --> src/lib.rs:218:68
+    |
+218 |         Object::Sphere(obj) => (&obj.color, object.lambert, object.specular, object.ambient),
+    |                                                                    ^^^^^^^^
+
+error[E0609]: no field `ambient` on type `&Object`
+   --> src/lib.rs:218:85
+    |
+218 |         Object::Sphere(obj) => (&obj.color, object.lambert, object.specular, object.ambient),
+    |                                                                                     ^^^^^^^
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0609`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 24 12:35:26.544 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0507]: cannot move out of borrowed content
+   --> src/lib.rs:204:33
+    |
+204 |         Object::Plane(plane) => plane.normal,
+    |                                 ^^^^^ cannot move out of borrowed content
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0507`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 12:55:34.680 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error: unexpected close delimiter: `}`
+   --> src/lib.rs:240:1
+    |
+240 | }
+    | ^
+
+error: aborting due to previous error
+
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 12:56:00.056 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0106]: missing lifetime specifier
+   --> src/lib.rs:208:48
+    |
+208 | fn plane_color_at(ray: &Ray, plane: &Plane) -> &Vector {
+    |                                                ^ expected lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from one of `ray`'s 2 lifetimes or `plane`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0106`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 12:56:18.246 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:254:34
+    |
+254 |             &plane_color_at(ray, object),
+    |                                  ^^^^^^ expected struct `Plane`, found enum `Object`
+    |
+    = note: expected type `&Plane`
+               found type `&Object`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 12:56:33.319 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unused variable: `ray`
+   --> src/lib.rs:208:19
+    |
+208 | fn plane_color_at(ray: &Ray, plane: &Plane) -> Vector {
+    |                   ^^^ help: consider using `_ray` instead
+    |
+    = note: #[warn(unused_variables)] on by default
+
+warning: unused variable: `plane`
+   --> src/lib.rs:208:30
+    |
+208 | fn plane_color_at(ray: &Ray, plane: &Plane) -> Vector {
+    |                              ^^^^^ help: consider using `_plane` instead
+
+error[E0597]: borrowed value does not live long enough
+   --> src/lib.rs:254:14
+    |
+254 |             &plane_color_at(ray, obj),
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^ temporary value does not live long enough
+...
+258 |         ),
+    |         - temporary value dropped here while still borrowed
+...
+295 | }
+    | - temporary value needs to live until here
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0597`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 13:00:46.175 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:259:49
+    |
+259 |         Object::Sphere(obj) => (obj.color.scale(1), obj.lambert, obj.specular, obj.ambient),
+    |                                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 13:02:00.249 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0573]: expected type, found module `vector`
+   --> src/lib.rs:208:35
+    |
+208 | fn plane_color_at(point_at_time: &vector, plane: &Plane) -> Vector {
+    |                                   ^^^^^^ did you mean `Vector`?
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0573`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 13:02:06.615 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:212:46
+    |
+212 |     let from_origin = point_at_time.subtract(plane.point);
+    |                                              ^^^^^^^^^^^
+    |                                              |
+    |                                              expected reference, found struct `vector::Vector`
+    |                                              help: consider borrowing here: `&plane.point`
+    |
+    = note: expected type `&vector::Vector`
+               found type `vector::Vector`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 13:04:15.921 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:215:30
+    |
+215 |     let mut px = Vector::new(0, 1, 0);
+    |                              ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:215:33
+    |
+215 |     let mut px = Vector::new(0, 1, 0);
+    |                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:215:36
+    |
+215 |     let mut px = Vector::new(0, 1, 0);
+    |                                    ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:216:30
+    |
+216 |     let mut py = Vector::new(0, 0, 1);
+    |                              ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:216:33
+    |
+216 |     let mut py = Vector::new(0, 0, 1);
+    |                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:216:36
+    |
+216 |     let mut py = Vector::new(0, 0, 1);
+    |                                    ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:231:24
+    |
+231 |     let x_cond = (cx < 0 && cx % width < -width / 2.0) || (cx > 0 && cx % width < width / 2.0);
+    |                        ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:231:65
+    |
+231 |     let x_cond = (cx < 0 && cx % width < -width / 2.0) || (cx > 0 && cx % width < width / 2.0);
+    |                                                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:232:24
+    |
+232 |     let y_cond = (cy < 0 && cy % width < -width / 2.0) || (cy > 0 && cy % width < width / 2.0);
+    |                        ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:232:65
+    |
+232 |     let y_cond = (cy < 0 && cy % width < -width / 2.0) || (cy > 0 && cy % width < width / 2.0);
+    |                                                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error: aborting due to 10 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 13:04:30.794 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:231:24
+    |
+231 |     let x_cond = (cx < 0 && cx % width < -width / 2.0) || (cx > 0 && cx % width < width / 2.0);
+    |                        ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:231:65
+    |
+231 |     let x_cond = (cx < 0 && cx % width < -width / 2.0) || (cx > 0 && cx % width < width / 2.0);
+    |                                                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:232:24
+    |
+232 |     let y_cond = (cy < 0 && cy % width < -width / 2.0) || (cy > 0 && cy % width < width / 2.0);
+    |                        ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:232:65
+    |
+232 |     let y_cond = (cy < 0 && cy % width < -width / 2.0) || (cy > 0 && cy % width < width / 2.0);
+    |                                                                 ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error: aborting due to 4 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 09 13:06:37.632 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:218:8
+    |
+218 |     if (plane.normal.z != 0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:222:8
+    |
+222 |     if (plane.normal.y != 0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0277]: can't compare `f32` with `{integer}`
+   --> src/lib.rs:218:24
+    |
+218 |     if (plane.normal.z != 0) {
+    |                        ^^ no implementation for `f32 == {integer}`
+    |
+    = help: the trait `std::cmp::PartialEq<{integer}>` is not implemented for `f32`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:218:27
+    |
+218 |     if (plane.normal.z != 0) {
+    |                           ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0277]: can't compare `f32` with `{integer}`
+   --> src/lib.rs:222:24
+    |
+222 |     if (plane.normal.y != 0) {
+    |                        ^^ no implementation for `f32 == {integer}`
+    |
+    = help: the trait `std::cmp::PartialEq<{integer}>` is not implemented for `f32`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:222:27
+    |
+222 |     if (plane.normal.y != 0) {
+    |                           ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error: aborting due to 4 previous errors
+
+Some errors occurred: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 10 09:38:10.175 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:218:8
+    |
+218 |     if (plane.normal.z != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:222:8
+    |
+222 |     if (plane.normal.y != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0308]: mismatched types
+   --> src/lib.rs:154:34
+    |
+154 |             None => a_distance > 0.001,
+    |                                  ^^^^^
+    |                                  |
+    |                                  expected &f32, found floating-point variable
+    |                                  help: consider borrowing here: `&0.001`
+    |
+    = note: expected type `&f32`
+               found type `{float}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:155:46
+    |
+155 |             Some(b_distance) => a_distance > 0.001 && a_distance < b_distance,
+    |                                              ^^^^^
+    |                                              |
+    |                                              expected &f32, found floating-point variable
+    |                                              help: consider borrowing here: `&0.001`
+    |
+    = note: expected type `&f32`
+               found type `{float}`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 10 09:39:36.001 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:222:8
+    |
+222 |     if (plane.normal.z != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:226:8
+    |
+226 |     if (plane.normal.y != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0308]: mismatched types
+  --> src/lib.rs:22:42
+   |
+22 | const SELF_INTERSECTION_THRESHOLD: i32 = 0.001;
+   |                                          ^^^^^ expected i32, found floating-point variable
+   |
+   = note: expected type `i32`
+              found type `{float}`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 10 09:39:54.282 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:222:8
+    |
+222 |     if (plane.normal.z != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:226:8
+    |
+226 |     if (plane.normal.y != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0308]: mismatched types
+  --> src/lib.rs:22:42
+   |
+22 | const SELF_INTERSECTION_THRESHOLD: i32 = 0.001;
+   |                                          ^^^^^ expected i32, found floating-point variable
+   |
+   = note: expected type `i32`
+              found type `{float}`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 10 16:54:01.199 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:229:8
+    |
+229 |     if (plane.normal.z != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:233:8
+    |
+233 |     if (plane.normal.y != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0608]: cannot index into a value of type `&Scene`
+   --> src/lib.rs:245:16
+    |
+245 |         return scene[0].clone();
+    |                ^^^^^^^^
+
+error[E0608]: cannot index into a value of type `&Scene`
+   --> src/lib.rs:248:12
+    |
+248 |     return scene[1].clone();
+    |            ^^^^^^^^
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0608`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 10 16:54:19.871 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:229:8
+    |
+229 |     if (plane.normal.z != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:233:8
+    |
+233 |     if (plane.normal.y != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0599]: no method named `clone` found for type `vector::Vector` in the current scope
+   --> src/lib.rs:245:33
+    |
+245 |         return scene.checker[0].clone();
+    |                                 ^^^^^
+    | 
+   ::: src/vector.rs:2:1
+    |
+2   | pub struct Vector {
+    | ----------------- method `clone` not found for this
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `clone`, perhaps you need to implement it:
+            candidate #1: `std::clone::Clone`
+
+error[E0599]: no method named `clone` found for type `vector::Vector` in the current scope
+   --> src/lib.rs:248:29
+    |
+248 |     return scene.checker[1].clone();
+    |                             ^^^^^
+    | 
+   ::: src/vector.rs:2:1
+    |
+2   | pub struct Vector {
+    | ----------------- method `clone` not found for this
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `clone`, perhaps you need to implement it:
+            candidate #1: `std::clone::Clone`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0599`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Aug 10 16:54:32.568 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:229:8
+    |
+229 |     if (plane.normal.z != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+    |
+    = note: #[warn(unused_parens)] on by default
+
+warning: unnecessary parentheses around `if` condition
+   --> src/lib.rs:233:8
+    |
+233 |     if (plane.normal.y != 0.0) {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^ help: remove these parentheses
+
+error[E0308]: mismatched types
+   --> src/lib.rs:245:39
+    |
+245 |         return scene.checker[0].scale(1);
+    |                                       ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:248:35
+    |
+248 |     return scene.checker[1].scale(1);
+    |                                   ^ expected f32, found integral variable
+    |
+    = note: expected type `f32`
+               found type `{integer}`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+

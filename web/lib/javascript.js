@@ -1,5 +1,7 @@
 import Vector from './vector'
 
+const SELF_INTERSECTION_THRESHOLD = 0.001;
+
 function trace(ray, scene, depth) {
     if (depth > 2) return;
 
@@ -14,15 +16,23 @@ function trace(ray, scene, depth) {
 
     var pointAtTime = Vector.add(ray.point, Vector.scale(ray.vector, dist));
 
-    return surface(ray, scene, object, pointAtTime, sphereNormal(object, pointAtTime), depth);
+    return surface(ray, scene, object, pointAtTime, surfaceNormal(object, pointAtTime), depth);
 }
 
 function intersectScene(ray, scene) {
     var closest = [Infinity, null];
     for (var i = 0; i < scene.objects.length; i++) {
         var object = scene.objects[i];
-        const dist = sphereIntersection(object, ray);
-        if (dist !== undefined && dist < closest[0]) {
+        let dist;
+        if (object.type === 'Sphere') {
+            dist = sphereIntersection(object, ray);
+        } else {
+            dist = planeIntersection(object, ray);
+        }
+
+        if (dist !== undefined &&
+            dist > SELF_INTERSECTION_THRESHOLD &&
+            dist < closest[0]) {
             closest = [dist, object];
         }
     }
@@ -38,13 +48,64 @@ function sphereIntersection(sphere, ray) {
     if (discriminant < 0) {
         return;
     } else {
-        return v - Math.sqrt(discriminant);
+        const dist = v - Math.sqrt(discriminant);
+        return dist > SELF_INTERSECTION_THRESHOLD ? dist : undefined;
     }
 }
 
-function sphereNormal(sphere, pos) {
-    return Vector.unitVector(
-        Vector.subtract(pos, sphere.point));
+function planeIntersection(plane, ray) {
+    const negNorm = Vector.negate(plane.normal);
+    const denom = Vector.dotProduct(negNorm, ray.vector);
+
+    if (denom <= 0) {
+        return Infinity;
+    }
+
+    const interm = Vector.subtract(plane.point, ray.point);
+    return Vector.dotProduct(interm, negNorm) / denom;
+}
+
+function surfaceNormal(object, pos) {
+
+    if (object.type === 'Sphere') {
+        return Vector.unitVector(Vector.subtract(pos, object.point));
+    }
+
+    return object.normal;
+}
+
+function planeColorAt(plane, point, scene) {
+
+    // Point from plane origin
+    // This is a complete hack to make up for my sad lack of lin alg. knowledge
+
+    const fromOrigin = Vector.subtract(point, plane.point);
+    const width = 2;
+
+    var px = { x: 0, y: 1, z: 0 };
+    var py = { x: 0, y: 0, z: 1 };
+
+    if (plane.normal.z !== 0) {
+        var px = { x: 0, y: 1, z: 0 };
+        var py = { x: 1, y: 0, z: 0 };
+    }
+
+    if (plane.normal.y !== 0) {
+        var px = { x: 0, y: 0, z: 1 };
+        var py = { x: 1, y: 0, z: 0 };
+    }
+
+    const cx = Vector.dotProduct(px, fromOrigin);
+    const cy = Vector.dotProduct(py, fromOrigin);
+
+    const x_cond = (cx < 0 && cx % width < -width/2) || (cx > 0 && cx % width < width/2);
+    const y_cond = (cy < 0 && cy % width < -width/2) || (cy > 0 && cy % width < width/2);
+
+    if ((x_cond && !y_cond) || (y_cond && !x_cond)) {
+        return scene.checker[0];
+    }
+
+    return scene.checker[1];
 }
 
 function surface(ray, scene, object, pointAtTime, normal, depth) {
@@ -53,12 +114,18 @@ function surface(ray, scene, object, pointAtTime, normal, depth) {
         c = Vector.ZERO,
         lambertAmount = 0;
 
+    if (object.type === 'Plane') {
+        b = planeColorAt(object, pointAtTime, scene);
+    }
+
     if (object.lambert) {
         for (var i = 0; i < scene.lights.length; i++) {
-            var lightPoint = scene.lights[0];
-            if (!isLightVisible(pointAtTime, scene, lightPoint)) continue;
+            const light = scene.lights[i];
+            if (!isLightVisible(pointAtTime, scene, light)) {
+                continue;
+            }
             var contribution = Vector.dotProduct(Vector.unitVector(
-                Vector.subtract(lightPoint, pointAtTime)), normal);
+                Vector.subtract(light, pointAtTime)), normal);
             if (contribution > 0) lambertAmount += contribution;
         }
     }
@@ -82,20 +149,26 @@ function surface(ray, scene, object, pointAtTime, normal, depth) {
 }
 
 function isLightVisible(pt, scene, light) {
-    var distObject =  intersectScene({
+
+    const pointToLightVector = Vector.subtract(light, pt);
+
+    const ray = {
         point: pt,
-        vector: Vector.unitVector(Vector.subtract(pt, light))
-    }, scene);
-    return distObject[0] > -0.005;
+        vector: Vector.unitVector(pointToLightVector)
+    };
+
+    const distanceToLight = Vector.length(pointToLightVector);
+
+    const [dist] = intersectScene(ray, scene);
+
+    return dist > distanceToLight;
 }
 
 export function render(canvas, scene) {
 
     const { width, height } = canvas;
 
-    var camera = scene.camera,
-        objects = scene.objects,
-        lights = scene.lights;
+    var camera = scene.camera;
 
     var eyeVector = Vector.unitVector(Vector.subtract(camera.vector, camera.point)),
 
@@ -111,7 +184,7 @@ export function render(canvas, scene) {
         pixelWidth = camerawidth / (width - 1),
         pixelHeight = cameraheight / (height - 1);
 
-    var index, color;
+    var color;
     var ray = {
         point: camera.point
     };

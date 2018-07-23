@@ -42,6 +42,14 @@ Vector.scale = function(a, t) {
     };
 };
 
+Vector.negate = function(a) {
+    return {
+        x: -a.x,
+        y: -a.y,
+        z: -a.z
+    };
+};
+
 // ## [Unit Vector](http://en.wikipedia.org/wiki/Unit_vector)
 //
 // Turn any vector into a vector that has a magnitude of 1.
@@ -94,7 +102,7 @@ Vector.length = function(a) {
 // off of that surface
 Vector.reflectThrough = function(a, normal) {
     var d = Vector.scale(normal, Vector.dotProduct(a, normal));
-    return Vector.subtract(Vector.scale(d, 2), a);
+    return Vector.subtract(a, Vector.scale(d, 2));
 };
 
 export default Vector

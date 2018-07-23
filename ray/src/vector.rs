@@ -82,6 +82,14 @@ impl Vector {
         }
     }
 
+    pub fn negate(&self) -> Vector {
+        Vector {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
+        }
+    }
+
     pub fn length(&self) -> f32 {
         self.dot_product(self).sqrt()
     }
@@ -90,6 +98,6 @@ impl Vector {
         let a = self.dot_product(normal);
         let d = normal.scale(a);
         let e = d.scale(2.0);
-        e.subtract(self)
+        self.subtract(&e)
     }
 }

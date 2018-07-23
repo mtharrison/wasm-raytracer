@@ -19,7 +19,9 @@ mod vector;
 use vector::Vector;
 use wasm_bindgen::prelude::*;
 
-#[derive(Serialize, Deserialize)]
+const SELF_INTERSECTION_THRESHOLD: f32 = 0.001;
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Camera {
     pub point: Vector,
     pub vector: Vector,
@@ -31,7 +33,14 @@ struct Ray<'a> {
     vector: Vector,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(tag = "type")]
+pub enum Object {
+    Sphere(Sphere),
+    Plane(Plane),
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Sphere {
     pub point: Vector,
     pub color: Vector,
@@ -41,11 +50,22 @@ pub struct Sphere {
     pub radius: f32,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Plane {
+    pub point: Vector,
+    pub color: Vector,
+    pub normal: Vector,
+    pub specular: f32,
+    pub lambert: f32,
+    pub ambient: f32,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Scene {
     pub camera: Camera,
-    pub objects: Vec<Sphere>,
+    pub objects: Vec<Object>,
     pub lights: Vec<Vector>,
+    pub checker: Vec<Vector>,
 }
 
 #[wasm_bindgen]
@@ -115,7 +135,7 @@ fn trace(ray: &Ray, scene: &Scene, depth: usize) -> Option<Vector> {
                         &scene,
                         &object,
                         &point_in_time,
-                        &sphere_normal(&object, &point_in_time),
+                        &normal(&object, &point_in_time),
                         depth,
                     ))
                 }
@@ -128,17 +148,19 @@ fn closer(a: &Option<f32>, b: &Option<f32>) -> bool {
     match a {
         None => false,
         Some(a_distance) => match b {
-            None => true,
-            Some(b_distance) => a_distance < b_distance,
+            None => a_distance > &SELF_INTERSECTION_THRESHOLD,
+            Some(b_distance) => {
+                a_distance > &SELF_INTERSECTION_THRESHOLD && a_distance < b_distance
+            }
         },
     }
 }
 
-fn intersect_scene<'a>(ray: &Ray, scene: &'a Scene) -> (Option<f32>, Option<&'a Sphere>) {
+fn intersect_scene<'a>(ray: &Ray, scene: &'a Scene) -> (Option<f32>, Option<&'a Object>) {
     let mut closest = (None, None);
 
     for object in &scene.objects {
-        let distance = sphere_intersection(object, ray);
+        let distance = object_intersection(object, ray);
         if closer(&distance, &closest.0) {
             closest = (distance, Some(object));
         }
@@ -147,36 +169,100 @@ fn intersect_scene<'a>(ray: &Ray, scene: &'a Scene) -> (Option<f32>, Option<&'a 
     closest
 }
 
-fn sphere_intersection(sphere: &Sphere, ray: &Ray) -> Option<f32> {
-    let eye_to_center = sphere.point.subtract(&ray.point);
-    let v = eye_to_center.dot_product(&ray.vector);
-    let eo_dot = eye_to_center.dot_product(&eye_to_center);
-    let discriminant = (sphere.radius * sphere.radius) - eo_dot + (v * v);
+fn object_intersection(object: &Object, ray: &Ray) -> Option<f32> {
+    match object {
+        Object::Sphere(sphere) => {
+            let eye_to_center = sphere.point.subtract(&ray.point);
+            let v = eye_to_center.dot_product(&ray.vector);
+            let eo_dot = eye_to_center.dot_product(&eye_to_center);
+            let discriminant = (sphere.radius * sphere.radius) - eo_dot + (v * v);
 
-    if discriminant < 0.0 {
-        return None;
+            if discriminant < 0.0 {
+                return None;
+            }
+
+            let distance = v - discriminant.sqrt();
+
+            if distance > SELF_INTERSECTION_THRESHOLD {
+                return Some(distance);
+            }
+
+            None
+        }
+        Object::Plane(plane) => {
+            let neg_norm = plane.normal.negate();
+            let denom = neg_norm.dot_product(&ray.vector);
+
+            if denom <= 0.0 {
+                return None;
+            }
+
+            let interm = plane.point.subtract(&ray.point);
+            Some(interm.dot_product(&neg_norm) / denom)
+        }
     }
-
-    return Some(v - discriminant.sqrt());
 }
 
-fn sphere_normal(sphere: &Sphere, pos: &Vector) -> Vector {
-    pos.subtract(&sphere.point).unit()
+fn normal(object: &Object, pos: &Vector) -> Vector {
+    match object {
+        Object::Sphere(sphere) => pos.subtract(&sphere.point).unit(),
+        Object::Plane(plane) => plane.normal.unit(),
+    }
+}
+
+fn plane_color_at(point_at_time: &Vector, plane: &Plane, scene: &Scene) -> Vector {
+    //     // Point from plane origin
+    //     // This is a complete hack to make up for my sad lack of lin alg. knowledge
+
+    let from_origin = point_at_time.subtract(&plane.point);
+    let width = 2.0;
+
+    let mut px = Vector::new(0.0, 1.0, 0.0);
+    let mut py = Vector::new(0.0, 0.0, 1.0);
+
+    if (plane.normal.z != 0.0) {
+        py = Vector::new(1.0, 0.0, 1.0);
+    }
+
+    if (plane.normal.y != 0.0) {
+        px = Vector::new(0.0, 0.0, 1.0);
+        py = Vector::new(1.0, 0.0, 0.0);
+    }
+
+    let cx = px.dot_product(&from_origin);
+    let cy = py.dot_product(&from_origin);
+
+    let x_cond = (cx < 0.0 && cx % width < -width / 2.0) || (cx > 0.0 && cx % width < width / 2.0);
+    let y_cond = (cy < 0.0 && cy % width < -width / 2.0) || (cy > 0.0 && cy % width < width / 2.0);
+
+    if (x_cond && !y_cond) || (y_cond && !x_cond) {
+        return scene.checker[0].scale(1.0);
+    }
+
+    return scene.checker[1].scale(1.0);
 }
 
 fn surface(
     ray: &Ray,
     scene: &Scene,
-    object: &Sphere,
+    object: &Object,
     point_at_time: &Vector,
     normal: &Vector,
     depth: usize,
 ) -> Vector {
-    let b = &object.color;
+    let (b, lambert, specular, ambient) = match object {
+        Object::Plane(obj) => (
+            plane_color_at(point_at_time, obj, scene),
+            obj.lambert,
+            obj.specular,
+            obj.ambient,
+        ),
+        Object::Sphere(obj) => (obj.color.scale(1.0), obj.lambert, obj.specular, obj.ambient),
+    };
     let mut c = Vector::zero();
     let mut lambert_amount = 0.0;
 
-    if object.lambert > 0.0 {
+    if lambert > 0.0 {
         for light in &scene.lights {
             if !is_light_visible(point_at_time, scene, light) {
                 continue;
@@ -190,7 +276,7 @@ fn surface(
         }
     }
 
-    if object.specular > 0.0 {
+    if specular > 0.0 {
         let reflected_ray = Ray {
             point: point_at_time,
             vector: ray.vector.reflect_through(normal),
@@ -198,7 +284,7 @@ fn surface(
         let reflected_color = trace(&reflected_ray, scene, depth + 1);
         match reflected_color {
             Some(color) => {
-                c = c.add(&color.scale(object.specular));
+                c = c.add(&color.scale(specular));
             }
             _ => {}
         }
@@ -206,21 +292,21 @@ fn surface(
 
     lambert_amount = min(lambert_amount, 1.0);
 
-    c.add3(
-        &b.scale(lambert_amount * object.lambert),
-        &b.scale(object.ambient),
-    )
+    c.add3(&b.scale(lambert_amount * lambert), &b.scale(ambient))
 }
 
 fn is_light_visible(point: &Vector, scene: &Scene, light: &Vector) -> bool {
+    let point_to_light_vector = light.subtract(&point);
+    let distance_to_light = point_to_light_vector.length();
+
     let ray = Ray {
         point,
-        vector: point.subtract(light).unit(),
+        vector: point_to_light_vector.unit(),
     };
     let (dist, _) = intersect_scene(&ray, scene);
     match dist {
-        None => false,
-        Some(distance) => distance > -0.005,
+        None => true,
+        Some(distance) => distance > distance_to_light,
     }
 }
 

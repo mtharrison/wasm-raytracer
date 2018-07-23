@@ -1,0 +1,145 @@
+Jul 23 10:52:11.171 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+  --> src/lib.rs:62:68
+   |
+62 |   pub fn binding(scene: String, width: f32, height: f32) -> Vec<f32> {
+   |  ____________________________________________________________________^
+63 | |     let s: Scene = serde_json::from_str(&scene).unwrap();
+64 | |     render(s, width, height);
+   | |                             - help: consider removing this semicolon
+65 | | }
+   | |_^ expected struct `std::vec::Vec`, found ()
+   |
+   = note: expected type `std::vec::Vec<f32>`
+              found type `()`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 23 10:54:16.449 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:152:5
+    |
+142 | fn intersect_scene<'a>(ray: &Ray, scene: &'a Scene) -> (Distance, Option<Sphere>) {
+    |                                                        -------------------------- expected `(Distance, std::option::Option<Sphere>)` because of return type
+...
+152 |     closest
+    |     ^^^^^^^ expected struct `Sphere`, found &Sphere
+    |
+    = note: expected type `(Distance, std::option::Option<Sphere>)`
+               found type `(Distance, std::option::Option<&Sphere>)`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 23 10:54:51.856 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0106]: missing lifetime specifier
+   --> src/lib.rs:142:74
+    |
+142 | fn intersect_scene<'a>(ray: &Ray, scene: &'a Scene) -> (Distance, Option<&Sphere>) {
+    |                                                                          ^ expected lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from one of `ray`'s 2 lifetimes or `scene`
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0106`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 23 10:57:41.225 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0433]: failed to resolve. Use of undeclared type or module `Distance`
+   --> src/lib.rs:222:9
+    |
+222 |         Distance::Infinite => false,
+    |         ^^^^^^^^ Use of undeclared type or module `Distance`
+
+error[E0433]: failed to resolve. Use of undeclared type or module `Distance`
+   --> src/lib.rs:223:9
+    |
+223 |         Distance::Finite(distance) => distance > -0.005,
+    |         ^^^^^^^^ Use of undeclared type or module `Distance`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:142:19
+    |
+142 |         if closer(&distance, &closest.0) {
+    |                   ^^^^^^^^^
+    |                   |
+    |                   expected enum `std::option::Option`, found reference
+    |                   help: consider removing the borrow: `distance`
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `&std::option::Option<f32>`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:142:30
+    |
+142 |         if closer(&distance, &closest.0) {
+    |                              ^^^^^^^^^^
+    |                              |
+    |                              expected enum `std::option::Option`, found reference
+    |                              help: consider removing the borrow: `closest.0`
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `&std::option::Option<_>`
+
+error: aborting due to 4 previous errors
+
+Some errors occurred: E0308, E0433.
+For more information about an error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+
+Jul 23 10:58:03.682 ERRO Compilation of your program failed. stderr:
+
+   Compiling ray v0.1.0 (file:///Users/matt/Developer/blog/2018-07-23-raytracing/code/ray)
+error[E0308]: mismatched types
+   --> src/lib.rs:142:19
+    |
+142 |         if closer(&distance, &closest.0) {
+    |                   ^^^^^^^^^
+    |                   |
+    |                   expected enum `std::option::Option`, found reference
+    |                   help: consider removing the borrow: `distance`
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `&std::option::Option<f32>`
+
+error[E0308]: mismatched types
+   --> src/lib.rs:142:30
+    |
+142 |         if closer(&distance, &closest.0) {
+    |                              ^^^^^^^^^^
+    |                              |
+    |                              expected enum `std::option::Option`, found reference
+    |                              help: consider removing the borrow: `closest.0`
+    |
+    = note: expected type `std::option::Option<f32>`
+               found type `&std::option::Option<_>`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0308`.
+error: Could not compile `ray`.
+
+To learn more, run the command again with --verbose.
+

@@ -1,0 +1,60 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+h1, h2, h3, h4 {
+    text-decoration: underline;
+}
+
+#container {
+    margin: auto;
+    width: 800px;
+}
+
+canvas {
+    margin: auto;
+    text-align: center
+}
+
+.switch-container {
+    margin: 50px 0;
+}
+
+.canvas-container {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    margin: auto
+}
+
+.fps {
+    position: absolute;
+    bottom: -16px;
+    color: black;
+    background: rgba(57,255,20,0.5);
+    padding: 7px;
+}
+
+.switch-wasm {
+    width: 300px;
+    margin: auto
+}
+
+.controls-container {
+    margin: 20px 0;
+}
+
+.controls-container label {
+    width: 100px;
+    display: inline-block;
+}
+
+.controls-container > div {
+    width: 20%;
+    float: left;
+    text-align: center
+}

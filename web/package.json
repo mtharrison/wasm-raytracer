@@ -1,0 +1,19 @@
+{
+    "name": "raytracing-wasm-web",
+    "version": "1.0.0",
+    "description": "Another example of using Rust/Wasm/Webpack",
+    "main": "lib/main.js",
+    "scripts": {
+        "serve": "webpack-serve --config ./webpack.config.js --content public"
+    },
+    "keywords": [],
+    "author": "Matt Harrison <hi@matt-harrison.com>",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "ray": "file://../ray/pkg"
+    },
+    "devDependencies": {
+        "webpack": "^4.6.0",
+        "webpack-serve": "^1.0.4"
+    }
+}

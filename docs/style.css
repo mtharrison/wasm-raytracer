@@ -50,7 +50,7 @@ canvas {
     position: absolute;
     bottom: -16px;
     color: black;
-    background: rgba(57,255,20,0.5);
+    background: rgba(57,255,20,0.8);
     padding: 7px;
 }
 
@@ -75,8 +75,11 @@ canvas {
 }
 
 .simplified h1,
-.simplified .switch-container,
-.simplified .fps,
 .simplified .controls-container {
     display: none;
+}
+
+.simplified .switch-container {
+    margin: 0;
+    padding: 0;
 }

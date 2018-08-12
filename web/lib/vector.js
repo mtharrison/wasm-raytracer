@@ -1,6 +1,3 @@
-import Fps from './fps'
-
-const fps = new Fps(1000,  document.querySelector('.dot'));
 // JS
 
 var Vector = {};
@@ -19,7 +16,6 @@ Vector.ZEROcp = function() {
 // is different than the rest of these since it takes two vectors but
 // returns a single number value.
 Vector.dotProduct = function(a, b) {
-    fps.tick();
     return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 };
 

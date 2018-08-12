@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Raytracing: WebAssembly vs JavaScript</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" media="all" href="style.css" />
+</head>
+<body>
+  <div id="container" class="simplified">
+
+    <h1>Raytracing: WebAssembly vs JavaScript</h1>
+
+    <div class="switch-container">
+        <p>Select renderer: <a href="#" class="selected">WebAssembly</a> | <a href="#">JavaScript</a></p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas width="480" height="360" id='canvas'>
+        </canvas>
+        <p class="fps">30fps</p>
+    </div>
+
+    <div class="controls-container">
+        <div class="controls-1">
+
+            <h3>Orbit Speed</h3>
+
+            <p>
+                <label for="volume">Speed</label>
+                <input type="range" id="orbit-speed" name="volume" min="0" max="100" value="15" />
+            </p>
+
+            <h3>Camera</h3>
+
+            <p>
+                <label for="volume">x-position</label>
+                <input type="range" id="camera-x" name="volume" min="-20" max="20" value="0" />
+            </p>
+
+            <p>
+                <label for="volume">y-position</label>
+                <input type="range" id="camera-y" name="volume" min="-20" max="20" value="0" />
+            </p>
+
+            <p>
+                <label for="volume">z-position</label>
+                <input type="range" id="camera-z" name="volume" min="-20" max="20" value="7" />
+            </p>
+
+            <p>
+                <label for="volume">field of view</label>
+                <input type="range" id="camera-fov" name="volume" min="20" max="90" value="70" />
+            </p>
+            <h3>Light</h3>
+
+            <p>
+                <label for="volume">x-position</label>
+                <input type="range" id="light-1-x" name="volume" min="-20" max="20" value="3" />
+            </p>
+
+            <p>
+                <label for="volume">y-position</label>
+                <input type="range" id="light-1-y" name="volume" min="-20" max="20" value="3" />
+            </p>
+
+            <p>
+                <label for="volume">z-position</label>
+                <input type="range" id="light-1-z" name="volume" min="-20" max="20" value="5" />
+            </p>
+        </div>
+        <div class="controls-2">
+             <h3>Room</h3>
+
+             <p>
+                 <label for="volume">Checker 1 - red</label>
+                 <input type="range" id="checker-color-1-red" name="volume" min="0" max="255" value="50" />
+             </p>
+
+             <p>
+                 <label for="volume">Checker 1 - green</label>
+                 <input type="range" id="checker-color-1-green" name="volume" min="0" max="255" value="0" />
+             </p>
+
+             <p>
+                 <label for="volume">Checker 1 - blue</label>
+                 <input type="range" id="checker-color-1-blue" name="volume" min="0" max="255" value="89" />
+             </p>
+
+             <p>
+                 <label for="volume">Checker 2 - red</label>
+                 <input type="range" id="checker-color-2-red" name="volume" min="0" max="255" value="92" />
+             </p>
+
+             <p>
+                 <label for="volume">Checker 3 - green</label>
+                 <input type="range" id="checker-color-2-green" name="volume" min="0" max="255" value="209" />
+             </p>
+
+             <p>
+                 <label for="volume">Checker 3 - blue</label>
+                 <input type="range" id="checker-color-2-blue" name="volume" min="0" max="255" value="92" />
+             </p>
+
+        </div>
+        <div class="controls-3">
+            <h3>Sphere 1</h3>
+
+            <p>
+                <label for="volume">radius</label>
+                <input type="range" id="obj-1-radius" name="volume" min="0" max="300" value="100" />
+            </p>
+
+            <h4>Color</h4>
+
+            <p>
+                <label for="volume">red</label>
+                <input type="range" id="obj-1-red" name="volume" min="0" max="255" value="0" />
+            </p>
+
+            <p>
+                <label for="volume">green</label>
+                <input type="range" id="obj-1-green" name="volume" min="0" max="255" value="0" />
+            </p>
+
+            <p>
+                <label for="volume">blue</label>
+                <input type="range" id="obj-1-blue" name="volume" min="0" max="255" value="0" />
+            </p>
+
+            <h4>Shading</h4>
+
+            <p>
+                <label for="volume">specular</label>
+                <input type="range" id="obj-1-specular" name="volume" min="0" max="100" value="70" />
+            </p>
+
+            <p>
+                <label for="volume">lambert</label>
+                <input type="range" id="obj-1-lambert" name="volume" min="0" max="100" value="50" />
+            </p>
+
+            <p>
+                <label for="volume">ambient</label>
+                <input type="range" id="obj-1-ambient" name="volume" min="0" max="100" value="30" />
+            </p>
+        </div>
+
+        <div class="controls-4">
+            <h3>Sphere 2</h3>
+
+            <p>
+                <label for="volume">radius</label>
+                <input type="range" id="obj-2-radius" name="volume" min="0" max="300" value="100" />
+            </p>
+
+            <h4>Color</h4>
+
+            <p>
+                <label for="volume">red</label>
+                <input type="range" id="obj-2-red" name="volume" min="0" max="255" value="0" />
+            </p>
+
+            <p>
+                <label for="volume">green</label>
+                <input type="range" id="obj-2-green" name="volume" min="0" max="255" value="0" />
+            </p>
+
+            <p>
+                <label for="volume">blue</label>
+                <input type="range" id="obj-2-blue" name="volume" min="0" max="255" value="0" />
+            </p>
+
+            <h4>Shading</h4>
+
+            <p>
+                <label for="volume">specular</label>
+                <input type="range" id="obj-2-specular" name="volume" min="0" max="100" value="70" />
+            </p>
+
+            <p>
+                <label for="volume">lambert</label>
+                <input type="range" id="obj-2-lambert" name="volume" min="0" max="100" value="50" />
+            </p>
+
+            <p>
+                <label for="volume">ambient</label>
+                <input type="range" id="obj-2-ambient" name="volume" min="0" max="100" value="30" />
+            </p>
+        </div>
+
+        <div class="controls-5">
+            <h3>Sphere 3</h3>
+
+            <p>
+                <label for="volume">radius</label>
+                <input type="range" id="obj-3-radius" name="volume" min="0" max="300" value="150" />
+            </p>
+
+            <h4>Color</h4>
+
+            <p>
+                <label for="volume">red</label>
+                <input type="range" id="obj-3-red" name="volume" min="0" max="255" value="255" />
+            </p>
+
+            <p>
+                <label for="volume">green</label>
+                <input type="range" id="obj-3-green" name="volume" min="0" max="255" value="255" />
+            </p>
+
+            <p>
+                <label for="volume">blue</label>
+                <input type="range" id="obj-3-blue" name="volume" min="0" max="255" value="255" />
+            </p>
+
+            <h4>Shading</h4>
+
+            <p>
+                <label for="volume">specular</label>
+                <input type="range" id="obj-3-specular" name="volume" min="0" max="100" value="25" />
+            </p>
+
+            <p>
+                <label for="volume">lambert</label>
+                <input type="range" id="obj-3-lambert" name="volume" min="0" max="100" value="72" />
+            </p>
+
+            <p>
+                <label for="volume">ambient</label>
+                <input type="range" id="obj-3-ambient" name="volume" min="0" max="100" value="26" />
+            </p>
+
+        </div>
+    </div>
+
+  </div>
+
+  <script src='bundle.js'></script>
+
+</body>
+</html>

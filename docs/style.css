@@ -73,3 +73,10 @@ canvas {
     float: left;
     text-align: center
 }
+
+.simplified h1,
+.simplified .switch-container,
+.simplified .fps,
+.simplified .controls-container {
+    display: none;
+}

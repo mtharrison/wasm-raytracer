@@ -74,12 +74,23 @@ canvas {
     text-align: center
 }
 
+.simplified {
+    width: inherit!important;
+}
+
+.simplified .canvas-container {
+    width: inherit!important;
+}
+
 .simplified h1,
 .simplified .controls-container {
     display: none;
+    font-size: 14px;
 }
 
 .simplified .switch-container {
     margin: 0;
     padding: 0;
+    text-align: left;
+    font-size: 16px;
 }

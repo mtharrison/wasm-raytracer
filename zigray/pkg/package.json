@@ -1,0 +1,13 @@
+{
+  "name": "zigray",
+  "collaborators": [
+      "Matt Harrison <hi@matt-harrison.com>",
+      "Sergey Larionov <sergey.larionov@pm.me>"
+  ],
+  "description": null,
+  "version": "0.1.0",
+  "license": null,
+  "repository": null,
+  "main": "ray.js",
+  "types": "ray.d.ts"
+}

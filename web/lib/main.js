@@ -1,4 +1,5 @@
 import * as Wasm from './wasm'
+import * as WasmZig from './wasm-zig'
 import * as JavaScript from './javascript'
 import Fps from './fps'
 
@@ -143,6 +144,14 @@ const renderWasm = (scene) => {
     }
 };
 
+const renderWasmZig = (scene) => {
+
+    const data = WasmZig.render(canvas, scene);
+    if (data) {         // may return undefined if wasm module not loaded
+        putData(data);
+    }
+};
+
 const renderJs = (scene) => {
 
     const data = JavaScript.render(canvas, scene);
@@ -152,7 +161,7 @@ const renderJs = (scene) => {
 let inc = 0;
 
 const fps = new Fps(250,  document.querySelector('.fps'));
-let wasm = true;
+let type = 'wasm';
 
 const render = () => {
 
@@ -170,8 +179,10 @@ const render = () => {
 
     inc += parseFloat(document.getElementById('orbit-speed').value / 250);
 
-    if (wasm) {
+    if (type === 'wasm') {
         renderWasm(scene);
+    } else if (type === 'wasm-zig') {
+        renderWasmZig(scene);
     } else {
         renderJs(scene);
     }
@@ -183,17 +194,11 @@ requestAnimationFrame(render);
 
 document.querySelectorAll('.switch-container a')
     .forEach((e) => e.addEventListener('click', (e) => {
+        const node = e.target;
 
-    const node = e.target;
-    if (node.innerText === 'WebAssembly') {
-        wasm = true;
-        document.querySelectorAll('.switch-container a')[0].classList = 'selected';
-        document.querySelectorAll('.switch-container a')[1].classList = '';
-    } else {
-        wasm = false;
-        document.querySelectorAll('.switch-container a')[1].classList = 'selected';
-        document.querySelectorAll('.switch-container a')[0].classList = '';
-    }
+        type = node.getAttribute('data-type');
+        [...document.querySelectorAll('.switch-container a')].forEach(node => node.classList = '');
+        node.classList = 'selected';
 
     e.preventDefault();
 }));
